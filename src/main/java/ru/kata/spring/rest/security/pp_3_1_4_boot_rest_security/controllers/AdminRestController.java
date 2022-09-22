@@ -23,7 +23,7 @@ public class AdminRestController {
         this.userService = userService;
         this.roleService = roleService;
     }
-    @GetMapping("/users")
+    @GetMapping("/users") //+
     public ResponseEntity<List<User>> showAllUsers() {
         List<User> users = userService.findAll();
         return users != null && !users.isEmpty()
@@ -31,7 +31,7 @@ public class AdminRestController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/users/{id}") //+
     public ResponseEntity<User> showUser(@PathVariable Integer id) {
         User user = userService.findById(id);
         return user != null
@@ -57,10 +57,10 @@ public class AdminRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/viewUser")
-    public ResponseEntity<User> showUser(Authentication auth) {
-        return new ResponseEntity<>((User) auth.getPrincipal(), HttpStatus.OK);
-    }
+//    @GetMapping("/viewUser")
+//    public ResponseEntity<User> showUser(Authentication auth) {
+//        return new ResponseEntity<>((User) auth.getPrincipal(), HttpStatus.OK);
+//    }
 
     @GetMapping("/roles")
     public ResponseEntity<Set<Role>> getAllRoles() {
